@@ -20,7 +20,7 @@ end
 function module.apply_to_config(config)
   private_helper()
 
-  config.font = wezterm.font 'Fira Code'
+  config.font = wezterm.font 'FiraCode Nerd Font'
   config.font_size = 18
   config.line_height = 1.2
   config.window_background_opacity = 0.85
