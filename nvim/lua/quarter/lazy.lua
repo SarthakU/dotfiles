@@ -1,6 +1,6 @@
 require("lazy").setup({
   "folke/which-key.nvim",
-  { "folke/neoconf.nvim",   cmd = "Neoconf" },
+  { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
   {
     "folke/tokyonight.nvim",
@@ -8,7 +8,7 @@ require("lazy").setup({
     priority = 1000,
     opts = {},
   },
-  { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",    name = "catppuccin", priority = 1000 },
   {
     "nvim-treesitter/nvim-treesitter",
     bdependenciesuild = ":TSUpdate",
@@ -96,5 +96,17 @@ require("lazy").setup({
   },
   {
     'onsails/lspkind.nvim',
+  },
+  {
+    'olivercederborg/poimandres.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('poimandres').setup {
+        -- leave this setup function empty for default config
+        -- or refer to the configuration section
+        -- for configuration options
+      }
+    end,
   }
 })
