@@ -56,12 +56,12 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 10
-inner.vertical =   10
-outer.left =       10
-outer.bottom =     10
-outer.top =        10
-outer.right =      10
+inner.horizontal = 5
+inner.vertical =   5
+outer.left =       5
+outer.bottom =     5
+outer.top =        5
+outer.right =      5
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -123,7 +123,6 @@ ctrl-6 = 'workspace 6'
 ctrl-7 = 'workspace 7'
 ctrl-8 = 'workspace 8'
 ctrl-9 = 'workspace 9'
-ctrl-0 = 'workspace 0'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 ctrl-shift-1 = 'move-node-to-workspace 1'
@@ -135,7 +134,6 @@ ctrl-shift-6 = 'move-node-to-workspace 6'
 ctrl-shift-7 = 'move-node-to-workspace 7'
 ctrl-shift-8 = 'move-node-to-workspace 8'
 ctrl-shift-9 = 'move-node-to-workspace 9'
-ctrl-shift-0 = 'move-node-to-workspace 0'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -149,12 +147,14 @@ ctrl-shift-semicolon = 'mode service'
 ctrl-f = 'fullscreen'
 ctrl-shift-f = 'macos-native-fullscreen'
 
+ctrl-shift-0  = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f  = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
@@ -167,20 +167,24 @@ alt-shift-l = ['join-with right', 'mode main']
 
 
 [[on-window-detected]]
+if.app-id = 'com.raycast.macos'
+run = 'layout floating'  # 1 for terminal
+
+[[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = 'move-node-to-workspace 1'  # 1 for terminal
 
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
-run = 'move-node-to-workspace 2'  # 2 for for communications 
+run = 'move-node-to-workspace 8'  # 2 for for communications 
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = 'move-node-to-workspace 2'  # 2 for for communications 
+run = 'move-node-to-workspace 8'  # 2 for for communications 
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 2'  # 2 for for communications 
+run = 'move-node-to-workspace 8'  # 2 for for communications 
 
 [[on-window-detected]]
 if.app-id = 'org.mozilla.com.zen.browser'
@@ -201,6 +205,10 @@ run = 'move-node-to-workspace 9'  # 9 is for extra browser
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
 run = 'move-node-to-workspace 9'  # 9 is for extra browser
+
+[[on-window-detected]]
+if.app-id = 'com.linear'
+run = 'move-node-to-workspace 2'  
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
