@@ -12,7 +12,7 @@ after-login-command = []
 after-startup-command = []
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -41,7 +41,7 @@ default-root-container-orientation = 'auto'
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodness#disable-hide-app
-automatically-unhide-macos-hidden-apps = false
+automatically-unhide-macos-hidden-apps = true
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -95,13 +95,13 @@ outer.right =      5
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 ctrl-slash = 'layout tiles horizontal vertical'
-ctrl-comma = 'layout accordion vertical'
+ctrl-backslash = 'layout accordion vertical '
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-ctrl-h = 'focus left'
-ctrl-j = 'focus down'
-ctrl-k = 'focus up'
-ctrl-l = 'focus right'
+ctrl-h = 'focus left --boundaries-action wrap-around-the-workspace'
+ctrl-j = 'focus down --boundaries-action wrap-around-the-workspace'
+ctrl-k = 'focus up --boundaries-action wrap-around-the-workspace'
+ctrl-l = 'focus right --boundaries-action wrap-around-the-workspace'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 ctrl-shift-h = 'move left'
@@ -123,6 +123,9 @@ ctrl-6 = 'workspace 6'
 ctrl-7 = 'workspace 7'
 ctrl-8 = 'workspace 8'
 ctrl-9 = 'workspace 9'
+ctrl-q = 'workspace q'
+ctrl-esc = 'workspace esc'
+ctrl-backtick = 'workspace backtick'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 ctrl-shift-1 = 'move-node-to-workspace 1'
@@ -134,6 +137,8 @@ ctrl-shift-6 = 'move-node-to-workspace 6'
 ctrl-shift-7 = 'move-node-to-workspace 7'
 ctrl-shift-8 = 'move-node-to-workspace 8'
 ctrl-shift-9 = 'move-node-to-workspace 9'
+ctrl-shift-q = 'move-node-to-workspace q'
+ctrl-shift-backtick = 'move-node-to-workspace backtick'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -146,6 +151,7 @@ ctrl-shift-semicolon = 'mode service'
 
 ctrl-f = 'fullscreen'
 ctrl-shift-f = 'macos-native-fullscreen'
+
 
 ctrl-shift-0  = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 
@@ -166,62 +172,86 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 
+
 [[on-window-detected]]
 if.app-id = 'com.raycast.macos'
-run = 'layout floating'  # 1 for terminal
+run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace 1'  # 1 for terminal
+if.app-id = 'com.apple.Preview'
+run = 'layout floating' 
 
 [[on-window-detected]]
-if.app-id = 'com.apple.MobileSMS'
-run = 'move-node-to-workspace 8'  # 2 for for communications 
+if.app-id = 'com.apple.QuickTimePlayerX'
+run = 'layout floating' 
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = 'move-node-to-workspace 8'  # 2 for for communications 
+run = 'move-node-to-workspace backtick'
 
 [[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 8'  # 2 for for communications 
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-id = 'org.mozilla.com.zen.browser'
-run = 'move-node-to-workspace 4'  # 4 for for research browser
+if.app-id = 'com.todesktop.230313mzl4w4u92'
+run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
-if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace 6'  # 6 for design (f is for full screen)
+if.app-id = 'company.thebrowser.Browser'
+run = 'move-node-to-workspace 3' 
 
 [[on-window-detected]]
-if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace 6'  # 6 for design (f is for full screen)
+if.app-id = 'app.zen-browser.zen'
+check-further-callbacks = true
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 9'  # 9 is for extra browser
-
-[[on-window-detected]]
-if.app-id = 'org.mozilla.firefox'
-run = 'move-node-to-workspace 9'  # 9 is for extra browser
+if.app-id = 'app.zen-browser.zen'
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = ['layout floating']
 
 [[on-window-detected]]
 if.app-id = 'com.linear'
-run = 'move-node-to-workspace 2'  
+run = 'move-node-to-workspace 5'  
+
+[[on-window-detected]]
+if.app-id = 'com.figma.Desktop'
+run = 'move-node-to-workspace 6'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'move-node-to-workspace q' 
+
+[[on-window-detected]]
+if.app-id = 'com.oracle.mysql.workbench'
+run = 'move-node-to-workspace 9'
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
-run = 'move-node-to-workspace 9'  # 9 is for extra browser
+run = 'move-node-to-workspace 9'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-run = 'move-node-to-workspace 9'  # 9 is for extra browser
+run = 'move-node-to-workspace 9'
 
 [[on-window-detected]]
 if.app-id = 'com.operasoftware.OperaGX'
-run = 'move-node-to-workspace 9'  # 9 is for extra browser
+run = 'move-node-to-workspace 9'
 
 [[on-window-detected]]
-if.app-id = 'com.kagi.kagimacOS' # Orion browser
-run = 'move-node-to-workspace 9'  # 9 is for extra browser
+if.app-id = 'com.kagi.kagimacOS'
+run = 'move-node-to-workspace 9'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 9' 
+
+[[on-window-detected]]
+if.app-id = 'com.smartcodeltd.stremio'
+run = 'move-node-to-workspace esc' 
+
